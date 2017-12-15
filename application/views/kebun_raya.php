@@ -9,10 +9,13 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
    crossorigin=""/>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
    <!-- Make sure you put this AFTER Leaflet's CSS -->
  	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 	   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
 	   crossorigin=""></script>
+	<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+	<script src="<?=base_url('assets/js/lrm-graphhopper-1.2.0.js')?>"></script>
 	<style>
 		body, html {
 		  height: 100%;
@@ -30,6 +33,16 @@
 		    maxZoom: 18,
 		    id: 'mapbox.streets',
 		    accessToken: 'pk.eyJ1IjoibXJhbWRhbmYiLCJhIjoiY2piNmdqdW1sOHd2dzMzcnprcDI2Y2ljbCJ9.MaYYfsvruJWQMFYMC6h0_w'
+		}).addTo(mymap);
+
+		L.marker([-6.60132, 106.79884]).addTo(mymap);
+		L.marker([-6.60027, 106.79872]).addTo(mymap);
+		L.Routing.control({
+			waypoints: [
+			    L.latLng(-6.60132, 106.79884),
+			    L.latLng(-6.60027, 106.79872)
+			  ],
+		    router: L.Routing.graphHopper('d87375c3-9d07-4fa0-9016-e0af7d7d99f5')
 		}).addTo(mymap);
 	</script>
 </body>
