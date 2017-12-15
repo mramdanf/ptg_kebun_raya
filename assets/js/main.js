@@ -8,20 +8,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoibXJhbWRhbmYiLCJhIjoiY2piNmdqdW1sOHd2dzMzcnprcDI2Y2ljbCJ9.MaYYfsvruJWQMFYMC6h0_w'
 }).addTo(mymap);
 
-// Dummy routing
-L.marker([-6.60132, 106.79884]).addTo(mymap);
-L.marker([-6.60027, 106.79872]).addTo(mymap);
-L.Routing.control({
-	waypoints: [
-	    L.latLng(-6.60132, 106.79884),
-	    L.latLng(-6.60027, 106.79872)
-	  ],
-    router: L.Routing.graphHopper('d87375c3-9d07-4fa0-9016-e0af7d7d99f5', {
-    	urlParameters: {
-    		vehicle: 'foot'
-    	}
-    })
-}).addTo(mymap);
+
 
 /*mymap.locate({setView: true, maxZoom: 16});
 
@@ -233,3 +220,16 @@ $.ajax({
         });
 	}
 });
+
+// Dummy routing
+L.Routing.control({
+	waypoints: [
+	    L.latLng(-6.60132, 106.79884),
+	    L.latLng(-6.602, 106.797)
+	  ],
+    router: L.Routing.graphHopper('d87375c3-9d07-4fa0-9016-e0af7d7d99f5', {
+    	urlParameters: {
+    		vehicle: 'foot'
+    	}
+    })
+}).addTo(mymap);
