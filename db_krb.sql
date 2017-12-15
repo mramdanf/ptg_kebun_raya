@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2016 at 08:34 AM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Generation Time: Dec 15, 2017 at 08:17 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_peta_krb`
+-- Database: `db_krb`
 --
 
 -- --------------------------------------------------------
@@ -26,11 +26,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_kategori`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_kategori` (
-`id_tbl` int(11) NOT NULL,
+CREATE TABLE `tbl_kategori` (
+  `id_tbl` int(11) NOT NULL,
   `nama_kategori` varchar(20) NOT NULL,
   `penanda_peta` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_kategori`
@@ -53,49 +53,18 @@ INSERT INTO `tbl_kategori` (`id_tbl`, `nama_kategori`, `penanda_peta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pengguna`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_pengguna` (
-`id_tbl` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `alamat` text NOT NULL,
-  `no_hp` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `ktp` varchar(400) NOT NULL,
-  `verifikasi` varchar(20) NOT NULL,
-  `username` varchar(40) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `hak_akses` tinyint(1) NOT NULL,
-  `status_ubah_profil` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_pengguna`
---
-
-INSERT INTO `tbl_pengguna` (`id_tbl`, `nama`, `alamat`, `no_hp`, `email`, `ktp`, `verifikasi`, `username`, `password`, `hak_akses`, `status_ubah_profil`) VALUES
-(1, 'Admin', 'Bogor', '081284948749', 'admin@gmail.com', 'ktp.png', '1.png', 'admin', '202cb962ac59075b964b07152d234b70', 1, 1),
-(37, 'David', 'Jakarta', '081318265990', 'david@gmail.com', 'u-37.jpg', '1.png', 'david', '202cb962ac59075b964b07152d234b70', 0, 1),
-(91, 'Christopher', 'Jakarta', '086454525424', 'christopher@gmail.com', 'unavailable.jpg', '0.png', '', '', 0, 1),
-(92, 'Michael', 'Bogor', '089653116201', 'michaeljulyus@gmail.com', '92.png', '1.png', 'michael', '0acf4539a14b3aa27deeb4cbdf6e989f', 0, 1),
-(94, 'Maria Susan', 'Jakarta', '081314176234', 'susan.sidabalok2016@gmail.com', '92.png', '1.png', 'susan', '8c8d357b5e872bbacd45197626bd5759', 0, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_peta`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_peta` (
-`id_tbl` int(11) NOT NULL,
+CREATE TABLE `tbl_peta` (
+  `id_tbl` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `nama_lokasi` varchar(30) NOT NULL,
   `deskripsi` text NOT NULL,
   `foto` varchar(50) NOT NULL,
   `latitude` varchar(30) NOT NULL,
   `longitude` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_peta`
@@ -139,19 +108,14 @@ INSERT INTO `tbl_peta` (`id_tbl`, `id_kategori`, `nama_lokasi`, `deskripsi`, `fo
 -- Indexes for table `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
- ADD PRIMARY KEY (`id_tbl`);
-
---
--- Indexes for table `tbl_pengguna`
---
-ALTER TABLE `tbl_pengguna`
- ADD PRIMARY KEY (`id_tbl`);
+  ADD PRIMARY KEY (`id_tbl`);
 
 --
 -- Indexes for table `tbl_peta`
 --
 ALTER TABLE `tbl_peta`
- ADD PRIMARY KEY (`id_tbl`), ADD KEY `id_group` (`id_kategori`);
+  ADD PRIMARY KEY (`id_tbl`),
+  ADD KEY `id_group` (`id_kategori`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -161,17 +125,12 @@ ALTER TABLE `tbl_peta`
 -- AUTO_INCREMENT for table `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
-MODIFY `id_tbl` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `tbl_pengguna`
---
-ALTER TABLE `tbl_pengguna`
-MODIFY `id_tbl` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=95;
+  MODIFY `id_tbl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tbl_peta`
 --
 ALTER TABLE `tbl_peta`
-MODIFY `id_tbl` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `id_tbl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- Constraints for dumped tables
 --
@@ -180,7 +139,7 @@ MODIFY `id_tbl` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 -- Constraints for table `tbl_peta`
 --
 ALTER TABLE `tbl_peta`
-ADD CONSTRAINT `tbl_peta_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tbl_kategori` (`id_tbl`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_peta_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tbl_kategori` (`id_tbl`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
