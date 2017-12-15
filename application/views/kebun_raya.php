@@ -17,11 +17,7 @@
  	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 	   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
 	<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-	
-	<!-- JS file -->
-	<script src="<?=base_url('assets/js/jquery.easy-autocomplete.min.js')?>"></script>
 
-	
 	<script src="<?=base_url('assets/js/jquery-1.8.3.min.js');?>" type="text/javascript"></script>
 	<script src="<?=base_url('assets/js/lrm-graphhopper-1.2.0.js')?>"></script>
 	
