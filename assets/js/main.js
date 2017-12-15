@@ -8,8 +8,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoibXJhbWRhbmYiLCJhIjoiY2piNmdqdW1sOHd2dzMzcnprcDI2Y2ljbCJ9.MaYYfsvruJWQMFYMC6h0_w'
 }).addTo(mymap);
 
-
-mymap.locate({setView: true, maxZoom: 16});
+mymap.locate({setView: false, maxZoom: 18});
 
 function onLocationFound(e) {
 	var radius = 500;
@@ -25,13 +24,6 @@ function onLocationError(e) {
 	alert(e.message);
 }
 mymap.on('locationerror', onLocationError);
-
-function locate() {
-	mymap.locate({setView: true, maxZoom: 16});
-}
-
-// call locate every 3 seconds... forever
-//setInterval(locate, 3000);
 
 
 var getUrl = window.location;
