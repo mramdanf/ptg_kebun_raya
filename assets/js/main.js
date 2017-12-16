@@ -1,14 +1,16 @@
+
 var mymap = L.map('mapid').setView([-6.5982,106.7995], 16);
 
 // Loading map from Mapbox
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoibXJhbWRhbmYiLCJhIjoiY2piNmdqdW1sOHd2dzMzcnprcDI2Y2ljbCJ9.MaYYfsvruJWQMFYMC6h0_w'
 }).addTo(mymap);
 
 
+// Get current location
 mymap.locate({setView: true, maxZoom: 16});
 
 function onLocationFound(e) {
@@ -36,34 +38,40 @@ function locate() {
 
 var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+var custPopup;
 
 $.ajax({
 	url : baseUrl + '/kebun_raya/getAllContent',
 	type : 'GET',
 	dataType: 'json',
 	success : function(data){
-		//var obj = jQuery.parseJSON(data);
-		//console.log(obj);
 		$.each(data, function(index, element) {
+			custPopup = '<b>'+data[index].nama_lokasi+'</b><br>'+
+				'<a href="#" class="go-here" dt-lat="'+data[index].latitude+
+				'" dt-lng="'+data[index].longitude+'">Go here</a>';
 			L.marker([data[index].latitude, data[index].longitude],
 				{icon: L.icon({
 				iconUrl: baseUrl + '/assets/img/markers/' + data[index].penanda_peta,
 				iconSize: [30, 45]})}).addTo(mymap)
-			.bindPopup(data[index].nama_lokasi)
+			.bindPopup(custPopup, {'className':'cust-popup'})
 			.openPopup();
         });
 	}
 });
-
-// Dummy routing
-L.Routing.control({
-	waypoints: [
-	    L.latLng(-6.60132, 106.79884),
-	    L.latLng(-6.602, 106.797)
-	  ],
+var routingControl = L.Routing.control({
     router: L.Routing.graphHopper('d87375c3-9d07-4fa0-9016-e0af7d7d99f5', {
     	urlParameters: {
     		vehicle: 'foot'
     	}
     })
 }).addTo(mymap);
+
+$(document).on('click', '.go-here', function(event) {
+	event.preventDefault();
+	var dtLat = $(this).attr('dt-lat');
+	var dtLng = $(this).attr('dt-lng');
+	routingControl.getPlan().setWaypoints([
+        L.latLng(-6.60132, 106.79884),
+        L.latLng(dtLat, dtLng)
+    ]);
+});
