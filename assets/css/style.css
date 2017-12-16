@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+html, body, #mapid {
+    height: 100%;
+    width: 100vw;
+}
+.container__item {
+    position: absolute;
+    z-index: 999999;
+    top: 10px;
+    left: 60px;
+}

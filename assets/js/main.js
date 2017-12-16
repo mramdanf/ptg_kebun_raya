@@ -70,3 +70,25 @@ $(document).on('click', '.go-here', function(event) {
         L.latLng(dtLat, dtLng)
     ]);
 });
+
+var options = {
+	url: baseUrl + '/kebun_raya/getAllContent',
+	getValue: "nama_lokasi",
+	list: {
+		match: {
+			enabled: true
+		},
+		maxNumberOfElements: 8,
+		onChooseEvent: function() {
+			var selLat = $(".form__field").getSelectedItemData().latitude;
+			var selLng = $(".form__field").getSelectedItemData().longitude;
+			routingControl.getPlan().setWaypoints([
+		        L.latLng(-6.60132, 106.79884),
+		        L.latLng(selLat, selLng)
+		    ]);
+		}
+	},
+	theme: "square"
+};
+
+$(".form__field").easyAutocomplete(options);

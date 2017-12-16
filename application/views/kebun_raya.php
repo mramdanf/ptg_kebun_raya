@@ -11,8 +11,11 @@
    crossorigin=""/>
    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 
-    <!-- Autocomplete CSS -->
+  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/style.css')?>">
+
+  <!-- Autocomplete CSS -->
 	<link rel="stylesheet" href="<?=base_url('assets/css/easy-autocomplete.min.css')?>">
+	<link rel="stylesheet" href="<?=base_url('assets/css/easy-autocomplete.themes.css')?>">
 
  	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 	   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
@@ -20,19 +23,18 @@
 
 	<script src="<?=base_url('assets/js/jquery-1.8.3.min.js');?>" type="text/javascript"></script>
 	<script src="<?=base_url('assets/js/lrm-graphhopper-1.2.0.js')?>"></script>
+
+	<!-- Autocomplete JS -->
+	<script src="<?=base_url('assets/js/jquery.easy-autocomplete.min.js');?>" type="text/javascript"></script>
 	
-	<style>
-		body {
-			padding: 0;
-			margin: 0;
-		}
-		html, body, #mapid {
-			height: 100%;
-			width: 100vw;
-		}
-	</style>
+
 </head>
 <body>
+	<div class="container__item">
+		<form class="form">
+			<input type="email" class="form__field" placeholder="Cari tempat di Kebun Raya Bogor" />
+		</form>
+	</div>
 	<div id="mapid"></div>
 	<script src="<?=base_url('assets/js/main.js')?>" type="text/javascript"></script>
 </body>
