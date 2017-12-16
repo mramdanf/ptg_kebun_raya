@@ -1,5 +1,5 @@
 
-var mymap = L.map('mapid').setView([-6.5982,106.7995], 16);
+var mymap = L.map('mapid').setView([-6.60132, 106.79884], 17);
 
 // Loading map from Mapbox
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -10,8 +10,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(mymap);
 
 
-// Get current location
-mymap.locate({setView: true, maxZoom: 16});
+/*mymap.locate({setView: false, maxZoom: 18});
 
 function onLocationFound(e) {
 	var radius = 500;
@@ -26,14 +25,7 @@ mymap.on('locationfound', onLocationFound);
 function onLocationError(e) {
 	alert(e.message);
 }
-mymap.on('locationerror', onLocationError);
-
-function locate() {
-	mymap.locate({setView: true, maxZoom: 16});
-}
-
-// call locate every 3 seconds... forever
-//setInterval(locate, 3000);
+mymap.on('locationerror', onLocationError);*/
 
 
 var getUrl = window.location;
@@ -53,8 +45,7 @@ $.ajax({
 				{icon: L.icon({
 				iconUrl: baseUrl + '/assets/img/markers/' + data[index].penanda_peta,
 				iconSize: [30, 45]})}).addTo(mymap)
-			.bindPopup(custPopup, {'className':'cust-popup'})
-			.openPopup();
+			.bindPopup(custPopup, {'className':'cust-popup'});
         });
 	}
 });
@@ -65,6 +56,10 @@ var routingControl = L.Routing.control({
     	}
     })
 }).addTo(mymap);
+
+// Dummy location on kebun raya
+var dummyMarker = L.marker([-6.60132, 106.79884]).addTo(mymap);
+dummyMarker.bindPopup("<b>It's Me</b>").openPopup();
 
 $(document).on('click', '.go-here', function(event) {
 	event.preventDefault();
