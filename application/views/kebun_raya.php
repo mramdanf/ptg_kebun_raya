@@ -11,6 +11,7 @@
    crossorigin=""/>
    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 
+  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/bootstrap.min.css')?>">
   <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/style.css')?>">
 
   <!-- Autocomplete CSS -->
@@ -22,6 +23,7 @@
 	<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
 	<script src="<?=base_url('assets/js/jquery-1.8.3.min.js');?>" type="text/javascript"></script>
+	<script src="<?=base_url('assets/js/bootstrap.min.js');?>" type="text/javascript"></script>
 	<script src="<?=base_url('assets/js/lrm-graphhopper-1.2.0.js')?>"></script>
 
 	<!-- Autocomplete JS -->
