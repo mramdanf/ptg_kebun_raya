@@ -93,6 +93,12 @@ $(document).on('click', '.go-here', function(event) {
 var options = {
 	url: baseUrl + '/kebun_raya/getAllContent',
 	getValue: "nama_lokasi",
+	template: {
+		type: "iconLeft",
+		fields: {
+			iconSrc: "icon_autocomplete"
+		}
+	},
 	list: {
 		match: {
 			enabled: true

@@ -13,7 +13,7 @@ class Kebun_raya extends CI_Controller {
 	}
 	
 	public function getAllContent() {
-		$data['data']=$this->m_krb->getAllContent()->result();
+		$data['data']=$this->m_krb->getAllContent();
 		echo json_encode($data['data']);
 	}
 
