@@ -43,27 +43,17 @@ $.ajax({
 			custPopup = '<center><b>'+data[index].nama_lokasi+'</b><br/><br/>'+
 				'<img src="'+baseUrl+'/assets/img/foto/'+data[index].foto+'" width="250px"/><br/><br/>'+
 				
-				'<button type="button" class="btn btn-info btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#myModal">Open Modal</button>'+
-				'<div id="myModal" class="modal fade" role="dialog">'+
-				  '<div class="modal-dialog">'+
-
-					'<div class="modal-content">'+
-					  '<div class="modal-header">'+
-						'<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-						'<h4 class="modal-title">'+data[index].nama_lokasi+'</h4>'+
-					  '</div>'+
-					  '<div class="modal-body">'+
-						'<img src="'+baseUrl+'/assets/img/foto/'+data[index].foto+'" width="500px"/><br/><br/>'+
-						'<p>'+data[index].deskripsi+'.</p>'+
-					  '</div>'+
-					  '<div class="modal-footer">'+
-						'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
-					  '</div>'+
-					'</div>'+
-
-				  '</div>'+
-				'</div><br/><br/>'+
+				'<button '+
+					'type="button" '+
+					'class="btn btn-info btn-sh-modal" '+
+					'data-dismiss="modal" '+
+					'data-toggle="modal" '+
+					'data-lokasi="'+data[index].nama_lokasi+'" '+
+					'data-photo="'+data[index].foto+'" '+
+					'data-dec="'+data[index].deskripsi+'" ' +
+					'data-target="#myModal">Lihat detail</button>'+
 				
+				'</div><br/><br/>'+
 				'<a href="#" class="go-here" dt-lat="'+data[index].latitude+
 				'" dt-lng="'+data[index].longitude+'">Go here</a></center>';
 			L.marker([data[index].latitude, data[index].longitude],
@@ -91,6 +81,7 @@ dummyMarker.bindPopup("<b>It's Me</b>").openPopup();
 
 $(document).on('click', '.go-here', function(event) {
 	event.preventDefault();
+	mymap.closePopup();
 	var dtLat = $(this).attr('dt-lat');
 	var dtLng = $(this).attr('dt-lng');
 	routingControl.getPlan().setWaypoints([
@@ -121,7 +112,11 @@ var options = {
 
 $(".form__field").easyAutocomplete(options);
 
-$(window).on('shown.bs.modal', function() { 
-	$('#myModal').modal('show');
+$(document).on('click', '.btn-sh-modal', function() { 
+	var modal = $('#myModal');
+	modal.find('h4.modal-title').text($(this).attr('data-lokasi'));
+	modal.find('img').attr('src', baseUrl+'/assets/img/foto/'+$(this).attr('data-photo'));
+	modal.find('p').text($(this).attr('data-dec'));
+	modal.modal('show');
     mymap.closePopup();
 });

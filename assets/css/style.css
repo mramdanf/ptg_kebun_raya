@@ -15,3 +15,7 @@ html, body, #mapid {
     top: 10px;
     left: 60px;
 }
+
+#myModal .img-responsive {
+	margin: 0 auto;
+}

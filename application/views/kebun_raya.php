@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>Maps</title>
+	<title>Kebun Raya</title>
 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
@@ -17,6 +17,8 @@
   <!-- Autocomplete CSS -->
 	<link rel="stylesheet" href="<?=base_url('assets/css/easy-autocomplete.min.css')?>">
 	<link rel="stylesheet" href="<?=base_url('assets/css/easy-autocomplete.themes.css')?>">
+
+	<link rel="shortcut icon" href="<?=base_url('assets/img/favicon.ico')?>" type="image/x-icon">
 
  	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 	   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
@@ -38,6 +40,23 @@
 		</form>
 	</div>
 	<div id="mapid"></div>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title">Pintu 4</h4>
+				</div>
+				<div class="modal-body text-center">
+					<img class="img-responsive"><br><br>
+					<p>Lokasi masuk kebun raya bogor yang berhadapan dengan kampus Pascasarjana IPB..</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="<?=base_url('assets/js/main.js')?>" type="text/javascript"></script>
 </body>
 </html>
