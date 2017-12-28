@@ -120,6 +120,10 @@ var options = {
 		        L.latLng(latlng),
 		        L.latLng(selLat, selLng)
 		    ]);
+		    $.LoadingOverlay('show');
+		    routingControl.on('routesfound', function(data) {
+		    	$.LoadingOverlay('hide');
+		    });
 		}
 	},
 	theme: "square"
