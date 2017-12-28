@@ -51,6 +51,8 @@ $.ajax({
 					'data-lokasi="'+data[index].nama_lokasi+'" '+
 					'data-photo="'+data[index].foto+'" '+
 					'data-dec="'+data[index].deskripsi+'" ' +
+					'data-lat="'+data[index].latitude+'" ' +
+					'data-lng="'+data[index].longitude+'" ' +
 					'data-target="#myModal">Lihat detail</button>'+
 				
 				'</div><br/><br/>'+
@@ -82,12 +84,19 @@ dummyMarker.bindPopup("<b>It's Me</b>").openPopup();
 $(document).on('click', '.go-here', function(event) {
 	event.preventDefault();
 	mymap.closePopup();
+	
 	var dtLat = $(this).attr('dt-lat');
 	var dtLng = $(this).attr('dt-lng');
+	
 	routingControl.getPlan().setWaypoints([
         L.latLng(latlng),
         L.latLng(dtLat, dtLng)
     ]);
+
+	$.LoadingOverlay('show');
+    routingControl.on('routesfound', function(data) {
+    	$.LoadingOverlay('hide');
+    });
 });
 
 var options = {
@@ -123,6 +132,28 @@ $(document).on('click', '.btn-sh-modal', function() {
 	modal.find('h4.modal-title').text($(this).attr('data-lokasi'));
 	modal.find('img').attr('src', baseUrl+'/assets/img/foto/'+$(this).attr('data-photo'));
 	modal.find('p').text($(this).attr('data-dec'));
+	modal.find('input[name=inlat]').val($(this).attr('data-lat'));
+	modal.find('input[name=inlng]').val($(this).attr('data-lng'));
 	modal.modal('show');
     mymap.closePopup();
+});
+
+$(document).on('click', '.btn-modal-gohere', function(event) {
+	event.preventDefault();
+	
+	var modal = $('#myModal');
+	modal.modal('hide');
+	
+	var dtLat = modal.find('input[name=inlat]').val();
+	var dtLng = modal.find('input[name=inlng]').val();
+	
+	routingControl.getPlan().setWaypoints([
+        L.latLng(latlng),
+        L.latLng(dtLat, dtLng)
+    ]);
+
+    $.LoadingOverlay('show');
+    routingControl.on('routesfound', function(data) {
+    	$.LoadingOverlay('hide');
+    });
 });

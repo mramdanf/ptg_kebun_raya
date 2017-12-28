@@ -43,6 +43,10 @@
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
+				
+				<input type="hidden" name="inlat">
+				<input type="hidden" name="inlng">
+
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
 					<h4 class="modal-title">Pintu 4</h4>
@@ -52,11 +56,13 @@
 					<p>Lokasi masuk kebun raya bogor yang berhadapan dengan kampus Pascasarjana IPB..</p>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-modal-gohere">Go Here</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>
 	<script src="<?=base_url('assets/js/main.js')?>" type="text/javascript"></script>
 </body>
 </html>
